@@ -63,7 +63,8 @@ INSERT INTO
   questions(title, body, user_id)
 VALUES
   ('HELP!', 'computer won''t run', (SELECT id FROM users WHERE fname = 'Bob')),
-  ('OH NO!', 'internet is broken', (SELECT id FROM users WHERE fname = 'Alice'));
+  ('OH NO!', 'internet is broken', (SELECT id FROM users WHERE fname = 'Alice')),
+  ('HELP!!', 'i''ve fallen and I cant get up', (SELECT id FROM users WHERE fname = 'Bob'));
 
 INSERT INTO
   question_follows(user_id, question_id)
