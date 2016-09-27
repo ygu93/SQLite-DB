@@ -83,6 +83,14 @@ VALUES
     (SELECT id FROM users WHERE fname = 'Teacher'));
 
 INSERT INTO
+  replies(body, question_id, reply_id, user_id)
+VALUES
+  ('thanks!',
+    (SELECT id FROM questions WHERE title = 'HELP!'),
+    (SELECT id FROM replies WHERE body = 'try restarting'),
+    (SELECT id FROM users WHERE fname = 'Bob'));
+
+INSERT INTO
   question_likes(user_id, question_id)
 VALUES
   ((SELECT id FROM users WHERE fname = 'Alice'),
