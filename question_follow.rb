@@ -1,12 +1,7 @@
-require_relative 'questions_db'
+require_relative 'model_base'
 
-class QuestionFollow
+class QuestionFollow < ModelBase
   attr_accessor :user_id, :question_id
-
-  def self.all
-    data = QuestionsDatabase.instance.execute("SELECT * FROM question_follows")
-    data.map { |datum| QuestionFollow.new(datum) }
-  end
 
   def self.followers_for_question_id(question_id)
     users = QuestionsDatabase.instance.execute(<<-SQL, question_id)

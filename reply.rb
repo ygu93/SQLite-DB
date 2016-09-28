@@ -1,26 +1,7 @@
-require_relative 'questions_db'
+require_relative 'model_base'
 
-class Reply
+class Reply < ModelBase
   attr_accessor :body, :question_id, :reply_id, :user_id
-
-  def self.all
-    data = QuestionsDatabase.instance.execute("SELECT * FROM replies")
-    data.map { |datum| Reply.new(datum) }
-  end
-
-  def self.find_by_id(id)
-    reply = QuestionsDatabase.instance.execute(<<-SQL, id)
-      SELECT
-        *
-      FROM
-        replies
-      WHERE
-        id = ?
-    SQL
-    return nil unless reply.length > 0
-
-    Reply.new(reply.first)
-  end
 
   def self.find_by_user_id(user_id)
     user = User.find_by_id(user_id)
